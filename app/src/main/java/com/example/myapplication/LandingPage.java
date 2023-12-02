@@ -25,6 +25,9 @@ public class LandingPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_landing_page);
 
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS,MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
         mLandingPageBinding = ActivityLandingPageBinding.inflate(getLayoutInflater());
         View view = mLandingPageBinding.getRoot();
 
@@ -33,14 +36,15 @@ public class LandingPage extends AppCompatActivity {
         mDisplayName = mLandingPageBinding.displayName;
         mLogoutButton = mLandingPageBinding.logoutButton;
 
-        mDisplayName.setText(getIntent().getStringExtra("displayName"));
+        mDisplayName.setText(sharedPreferences.getString("name",""));
+        //mDisplayName.setText(getIntent().getStringExtra("displayName"));
 
         mLogoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS,MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
+                //SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS,MODE_PRIVATE);
+                //SharedPreferences.Editor editor = sharedPreferences.edit();
 
                 editor.putString("name","");
                 editor.apply();
