@@ -49,23 +49,27 @@ public class CreateUser extends AppCompatActivity {
                     userEntity.setPassword(mPassword.getText().toString());
                     if(validateInput(userEntity))
                     {
+                        //UserEntity userEntity2
+
                         UserDatabase userDatabase = UserDatabase.getUserDatabase(getApplicationContext());
                         final UserDao userDao = userDatabase.userDao();
-
-                        userDao.registerUser(userEntity);
-                        Toast.makeText(getApplicationContext(),"User Registered", Toast.LENGTH_SHORT).show();
-                        /**
-                        new Thread(new Runnable() {
-                            @Override
-                            public void run() {
-                                userDao.registerUser(userEntity);
-                                Toast.makeText(getApplicationContext(),"User Registered", Toast.LENGTH_SHORT).show();
+                        if(userDao.getUser(userEntity.name)==null) {
+                            userDao.registerUser(userEntity);
+                            Toast.makeText(getApplicationContext(), "User Registered", Toast.LENGTH_SHORT).show();
+                            /**
+                             new Thread(new Runnable() {
+                            @Override public void run() {
+                            userDao.registerUser(userEntity);
+                            Toast.makeText(getApplicationContext(),"User Registered", Toast.LENGTH_SHORT).show();
                             }
-                        }).start();
-                         **/
-                        //Switching Intents
-                        Intent intent = MainActivity.getIntent(getApplicationContext());
-                        startActivity(intent);
+                            }).start();
+                             **/
+                            //Switching Intents
+                            Intent intent = MainActivity.getIntent(getApplicationContext());
+                            startActivity(intent);
+                        } else {
+                            Toast.makeText(getApplicationContext(),"This username is in use already!",Toast.LENGTH_SHORT).show();
+                        }
                     } else {
                         Toast.makeText(getApplicationContext(),"Please fill all fields!",Toast.LENGTH_SHORT).show();
                     }
