@@ -9,9 +9,6 @@ public class UserEntity {
 
     @PrimaryKey(autoGenerate = true)
     Integer id;
-
-    @ColumnInfo(name = "userId")
-    String userId;
     @ColumnInfo(name = "password")
     String password;
 
@@ -26,13 +23,6 @@ public class UserEntity {
         this.id = id;
     }
 
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
 
     public String getPassword() {
         return password;
