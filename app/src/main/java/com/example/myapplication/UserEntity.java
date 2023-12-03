@@ -15,6 +15,17 @@ public class UserEntity {
     @ColumnInfo(name = "name")
     String name;
 
+    @ColumnInfo(name = "adminStatus")
+    String adminStatus;
+
+    public String getAdminStatus() {
+        return adminStatus;
+    }
+
+    public void setAdminStatus(String adminStatus) {
+        this.adminStatus = adminStatus;
+    }
+
     public Integer getId() {
         return id;
     }

@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -19,6 +20,8 @@ public class CreateUser extends AppCompatActivity {
     EditText mPassword;
     EditText mConfirmPassword;
     Button mRegister;
+
+    CheckBox mAdmin;
 
     ActivityCreateUserBinding mCreateUserBinding;
 
@@ -36,6 +39,7 @@ public class CreateUser extends AppCompatActivity {
         mConfirmPassword = mCreateUserBinding.confirmPassword;
         mPassword = mCreateUserBinding.password;
         mUser_name = mCreateUserBinding.userName;
+        mAdmin = mCreateUserBinding.adminBox;
 
 
 
@@ -47,6 +51,12 @@ public class CreateUser extends AppCompatActivity {
                 {
                     userEntity.setName(mUser_name.getText().toString());
                     userEntity.setPassword(mPassword.getText().toString());
+                    if(mAdmin.isChecked())
+                    {
+                        userEntity.setAdminStatus("yes");
+                    } else {
+                        userEntity.setAdminStatus("no");
+                    }
                     if(validateInput(userEntity))
                     {
                         //UserEntity userEntity2

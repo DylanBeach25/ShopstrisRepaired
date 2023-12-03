@@ -8,4 +8,8 @@
     <string name="login">Login</string>
     <string name="welcome_back">Welcome Back</string>
     <string name="logout">Logout</string>
+    <string name="admin">Admin?</string>
+    <string name="current_orders">Current Orders</string>
+    <string name="previous_orders">Previous Orders</string>
+    <string name="admin_tools">Admin Tools</string>
 </resources>
