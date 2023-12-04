@@ -23,13 +23,18 @@ public class MainActivity extends AppCompatActivity {
     public static final String SHARED_PREFS = "sharedPrefs";
 
     ActivityMainBinding mMainBinding;
+    UserDatabase userDatabase;
+    UserDao userDao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        userDatabase = UserDatabase.getUserDatabase(getApplicationContext());
+        userDao = userDatabase.userDao();
 
         checkBox();
+        checkUsers();
 
 
         mMainBinding = ActivityMainBinding.inflate(getLayoutInflater());
@@ -59,8 +64,8 @@ public class MainActivity extends AppCompatActivity {
                 {
                     Toast.makeText(getApplicationContext(),"Fill all fields",Toast.LENGTH_SHORT).show();
                 } else {
-                    UserDatabase userDatabase = UserDatabase.getUserDatabase(getApplicationContext());
-                    UserDao userDao = userDatabase.userDao();
+                    //UserDatabase userDatabase = UserDatabase.getUserDatabase(getApplicationContext());
+                    //UserDao userDao = userDatabase.userDao();
                     UserEntity userEntity = userDao.login(name,password);
                     if(userEntity == null) {
                         Toast.makeText(getApplicationContext(),"Invalid Credentials!",Toast.LENGTH_SHORT).show();
@@ -78,6 +83,23 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private void checkUsers() {
+        if(userDao.getAllUsers().size() < 1)
+        {
+            UserEntity testUser1 = new UserEntity();
+            UserEntity admin2 = new UserEntity();
+            testUser1.setName("testuser1");
+            testUser1.setPassword("testuser1");
+            testUser1.setAdminStatus("no");
+            admin2.setName("admin2");
+            admin2.setPassword("admin2");
+            admin2.setAdminStatus("yes");
+            userDao.registerUser(testUser1);
+            userDao.registerUser(admin2);
+        }
+
     }
 
     private void checkBox() {
