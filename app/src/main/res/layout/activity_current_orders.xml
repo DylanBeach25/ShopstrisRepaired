@@ -14,7 +14,8 @@
         android:background="#aec6cf"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="35dp"
-        android:layout_marginTop="50sp"/>
+        android:layout_marginTop="50sp"
+        android:layout_marginBottom="100sp" />
 
     <TextView
         android:layout_width="match_parent"
@@ -29,6 +30,28 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@id/recyclerView"
         />
+    <EditText
+        android:id="@+id/cartNameEditText"
+        android:hint="@string/order_name"
+        android:gravity="center"
+        android:inputType="text"
+        android:layout_width="200sp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/recyclerView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+    <Button
+        android:id="@+id/createOrderButton"
+        android:layout_width="200sp"
+        android:text="@string/create_order"
+        android:textSize="25sp"
+        android:layout_height="50sp"
+        app:layout_constraintTop_toBottomOf="@id/cartNameEditText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
 
 
 

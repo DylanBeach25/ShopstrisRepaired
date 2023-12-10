@@ -14,4 +14,7 @@
     <string name="admin_tools">Admin Tools</string>
     <string name="shopstris">Shopstris</string>
     <string name="test">test</string>
+    <string name="cart_name">Cart Name</string>
+    <string name="create_order">Create Order</string>
+    <string name="order_name">Order Name</string>
 </resources>

@@ -11,6 +11,8 @@ public interface UserDao {
 
     @Insert
     void registerUser(UserEntity userEntity);
+    @Insert
+    void registerCart(CartEntity cartEntity);
 
     @Query("SELECT * from users where name=(:name) and password=(:password)")
     UserEntity login(String name, String password);
@@ -23,5 +25,8 @@ public interface UserDao {
 
     @Query("SELECT * from products where productName=(:productName)")
     List<ProductEntity> getProductsName(String productName);
+
+    @Query("SELECT * from carts where userID=(:userID)")
+    List<CartEntity> getCartsByID(Integer userID);
 
 }
