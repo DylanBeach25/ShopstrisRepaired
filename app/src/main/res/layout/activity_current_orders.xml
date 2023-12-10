@@ -6,10 +6,30 @@
     android:layout_height="match_parent"
     tools:context=".CurrentOrders">
 
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@android:color/darker_gray"/>
+        android:background="#aec6cf"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="35dp"
+        android:layout_marginTop="50sp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="Test"
+        android:textSize="40sp"
+        android:gravity="center"
+        android:background="#808080"
+        android:id="@+id/orders_username"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/recyclerView"
+        />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
