@@ -21,4 +21,7 @@ public interface UserDao {
     @Query("Select * from users")
     List<UserEntity> getAllUsers();
 
+    @Query("SELECT * from products where productName=(:productName)")
+    List<ProductEntity> getProductsName(String productName);
+
 }

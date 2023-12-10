@@ -6,7 +6,7 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
-@Database(entities = {UserEntity.class},version = 2)
+@Database(entities = {UserEntity.class, ProductEntity.class, CartEntity.class},version = 3)
 public abstract class UserDatabase extends RoomDatabase {
 
     private static final String dbName = "user";
