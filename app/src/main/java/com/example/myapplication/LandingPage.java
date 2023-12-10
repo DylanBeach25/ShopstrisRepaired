@@ -2,6 +2,7 @@ package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -62,6 +63,13 @@ public class LandingPage extends AppCompatActivity {
                 finish();
             }
         });
+        mCurOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = CurrentOrders.getIntent(getApplicationContext());
+                startActivity(intent);
+            }
+        });
     }
 
     private void checkForAdmin() {
@@ -74,4 +82,10 @@ public class LandingPage extends AppCompatActivity {
             mAdminTools.setVisibility(View.INVISIBLE);
         }
     }
+
+    public static Intent getIntent(Context context) {
+        Intent intent = new Intent(context,LandingPage.class);
+        return intent;
+    }
+
 }

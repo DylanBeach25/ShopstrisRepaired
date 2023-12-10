@@ -8,14 +8,25 @@ import androidx.room.PrimaryKey;
 public class CartEntity {
     @PrimaryKey(autoGenerate = true)
     Integer id;
+    @ColumnInfo(name = "name")
+    String name;
     @ColumnInfo(name = "userID")
     Integer userID;
     @ColumnInfo(name = "finishedCart")
     String finishedCart;
 
-    public CartEntity(Integer userID) {
+    public CartEntity(Integer userID, String name) {
         this.userID = userID;
+        this.name = name;
         finishedCart = "no";
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Integer getId() {
