@@ -22,13 +22,16 @@ public class ProductEntity {
 
     @ColumnInfo(name = "cartID")
     Integer cartID;
+    @ColumnInfo(name = "amount")
+    Integer amount;
 
-    public ProductEntity(String productName, Double productPrice, String description, Integer userID, Integer cartID) {
+    public ProductEntity(String productName, Double productPrice, String description,Integer amount, Integer userID, Integer cartID) {
         this.productName = productName;
         this.productPrice = productPrice;
         this.description = description;
         this.userID = userID;
         this.cartID = cartID;
+        this.amount = amount;
     }
 
     public void setProductName(String productName) {
