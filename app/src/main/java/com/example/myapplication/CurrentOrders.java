@@ -19,7 +19,7 @@ import com.example.myapplication.databinding.ActivityCurrentOrdersBinding;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CurrentOrders extends AppCompatActivity {
+public class CurrentOrders extends AppCompatActivity implements SelectListener {
 
     public static final String SHARED_PREFS = "sharedPrefs";
     RecyclerView recyclerView;
@@ -59,7 +59,7 @@ public class CurrentOrders extends AppCompatActivity {
         UserEntity passedUser = userDao.getUser(sharedPreferences.getString("name",""));
         carts = userDao.getCartsByID(passedUser.getId());
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(new MyAdapter(getApplicationContext(),carts));
+        recyclerView.setAdapter(new MyAdapter(getApplicationContext(),carts,this));
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,5 +90,12 @@ public class CurrentOrders extends AppCompatActivity {
     {
         Intent intent = new Intent(context, CurrentOrders.class);
         return intent;
+    }
+
+    @Override
+    public void onItemClicked(CartEntity cartEntity) {
+        Intent intent  = CartItems.getIntent(getApplicationContext());
+        startActivity(intent);
+        //Toast.makeText(this,cartEntity.getName(),Toast.LENGTH_SHORT).show();
     }
 }
