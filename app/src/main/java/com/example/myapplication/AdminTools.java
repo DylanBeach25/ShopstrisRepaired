@@ -26,6 +26,13 @@ public class AdminTools extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        mRemoveItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = RemoveItems.getIntent(getApplicationContext());
+                startActivity(intent);
+            }
+        });
     }
 
 

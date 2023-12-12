@@ -36,6 +36,8 @@ public interface UserDao {
     List<ProductEntity> getProductsCartID(Integer cartID);
     @Query("SELECT * from products where cartID=(:cartID) and userID=(:userID)")
     List<ProductEntity> getProductsCartIDUserID(Integer cartID,Integer userID);
+    @Query("DELETE FROM products where productName=(:name) and cartID=(:cartID)")
+    void deleteItem(String name, Integer cartID);
 
     @Query("SELECT * from carts where userID=(:userID)")
     List<CartEntity> getCartsByID(Integer userID);

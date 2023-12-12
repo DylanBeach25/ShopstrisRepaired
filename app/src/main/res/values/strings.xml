@@ -28,4 +28,6 @@
     <string name="price">Price</string>
     <string name="item_description">Item Description</string>
     <string name="add_item">Add Item</string>
+    <string name="item_to_remove">Item to remove</string>
+    <string name="delete_item">Delete Item</string>
 </resources>
