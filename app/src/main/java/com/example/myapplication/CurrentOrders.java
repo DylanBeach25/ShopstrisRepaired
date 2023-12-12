@@ -64,7 +64,8 @@ public class CurrentOrders extends AppCompatActivity implements SelectListener {
         carts.add(new CartEntity(4,"test4"));
          */
         UserEntity passedUser = userDao.getUser(sharedPreferences.getString("name",""));
-        carts = userDao.getCartsByID(passedUser.getId());
+        //carts = userDao.getCartsByID(passedUser.getId());
+        carts = userDao.getCartsByCartState(passedUser.getId(),"no");
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(new MyAdapter(getApplicationContext(),carts,this));
 

@@ -39,11 +39,17 @@ public interface UserDao {
 
     @Query("SELECT * from carts where userID=(:userID)")
     List<CartEntity> getCartsByID(Integer userID);
+
+    @Query("SELECT * from carts where userID=(:userID) and finishedCart=(:finishedCart)")
+    List<CartEntity> getCartsByCartState(Integer userID, String finishedCart);
     @Query("SELECT * from carts where userID=(:userID) and name=(:name)")
     List<CartEntity> getCartsByUserIDandName(Integer userID,String name);
 
     @Query("SELECT * from carts where userID=(:userID) and name=(:name)")
     CartEntity getSingularCartByUserIDandName(Integer userID, String name);
+
+    @Query("UPDATE carts SET finishedCart=(:finishedCart) WHERE userID=(:userID) and id=(:id)")
+    void updateCart(String finishedCart, Integer userID, Integer id);
 
 
 }

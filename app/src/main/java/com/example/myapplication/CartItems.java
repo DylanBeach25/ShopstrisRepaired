@@ -79,6 +79,15 @@ public class CartItems extends AppCompatActivity {
                 }
             }
         });
+        mPurchaseCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                userDao.updateCart("yes", userId, cartID);
+                Toast.makeText(getApplicationContext(),"Cart has been purchased",Toast.LENGTH_SHORT).show();
+                Intent intent = CurrentOrders.getIntent(getApplicationContext());
+                startActivity(intent);
+            }
+        });
     }
 
     private void linkItems() {
