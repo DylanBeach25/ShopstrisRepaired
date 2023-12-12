@@ -30,7 +30,10 @@ public class CurrentOrders extends AppCompatActivity implements SelectListener {
 
     UserDatabase userDatabase;
     UserDao userDao;
+
     SharedPreferences sharedPreferences;
+    SharedPreferences cartNamePreferences;
+    SharedPreferences.Editor edit;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +43,10 @@ public class CurrentOrders extends AppCompatActivity implements SelectListener {
         setContentView(R.layout.activity_current_orders);
 
         sharedPreferences = getSharedPreferences(SHARED_PREFS,MODE_PRIVATE);
+        cartNamePreferences = getSharedPreferences("CART_PREF",MODE_PRIVATE);
+        edit = cartNamePreferences.edit();
+        edit.putString("cartName","");
+
 
         recyclerView = findViewById(R.id.recyclerView);
         textView = findViewById(R.id.orders_username);
@@ -75,12 +82,16 @@ public class CurrentOrders extends AppCompatActivity implements SelectListener {
         {
             UserEntity idHolder = userDao.getUser(sharedPreferences.getString("name",""));
             Integer userID = idHolder.getId();
-            CartEntity trial = new CartEntity(userID,editText.getText().toString());
-            carts.add(trial);
-            recyclerView.getAdapter().notifyItemInserted(carts.size()-1);
-            editText.getText().clear();
-            recyclerView.scrollToPosition(carts.size()-1);
-            userDao.registerCart(trial);
+            if(userDao.getCartsByUserIDandName(userID,editText.getText().toString()).isEmpty()) {
+                CartEntity trial = new CartEntity(userID, editText.getText().toString());
+                carts.add(trial);
+                recyclerView.getAdapter().notifyItemInserted(carts.size() - 1);
+                editText.getText().clear();
+                recyclerView.scrollToPosition(carts.size() - 1);
+                userDao.registerCart(trial);
+            } else {
+                Toast.makeText(this,"You already have a cart named this",Toast.LENGTH_SHORT).show();
+            }
         } else {
             Toast.makeText(getApplicationContext(),"Please fill the order name field", Toast.LENGTH_SHORT).show();
         }
@@ -94,6 +105,8 @@ public class CurrentOrders extends AppCompatActivity implements SelectListener {
 
     @Override
     public void onItemClicked(CartEntity cartEntity) {
+        edit.putString("cartName",cartEntity.getName());
+        edit.apply();
         Intent intent  = CartItems.getIntent(getApplicationContext());
         startActivity(intent);
         //Toast.makeText(this,cartEntity.getName(),Toast.LENGTH_SHORT).show();

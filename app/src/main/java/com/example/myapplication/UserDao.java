@@ -29,10 +29,21 @@ public interface UserDao {
     List<ProductEntity> getProductsName(String productName);
     @Query("SELECT * from products where productName=(:productName) and cartID=(:cartID)")
     List<ProductEntity> getProductsNameCartID(String productName,Integer cartID);
+
+   @Query("SELECT*from products where productName=(:productName) and cartID=(:cartID)")
+   ProductEntity getSingularProductNameCartID(String productName,Integer cartID);
     @Query("SELECT * from products where cartID=(:cartID)")
     List<ProductEntity> getProductsCartID(Integer cartID);
+    @Query("SELECT * from products where cartID=(:cartID) and userID=(:userID)")
+    List<ProductEntity> getProductsCartIDUserID(Integer cartID,Integer userID);
 
     @Query("SELECT * from carts where userID=(:userID)")
     List<CartEntity> getCartsByID(Integer userID);
+    @Query("SELECT * from carts where userID=(:userID) and name=(:name)")
+    List<CartEntity> getCartsByUserIDandName(Integer userID,String name);
+
+    @Query("SELECT * from carts where userID=(:userID) and name=(:name)")
+    CartEntity getSingularCartByUserIDandName(Integer userID, String name);
+
 
 }

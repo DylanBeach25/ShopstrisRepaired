@@ -37,6 +37,7 @@
         app:layout_constraintBottom_toTopOf="@id/itemsListView"
         android:text="@string/your_cart" />
     <TextView
+        android:id="@+id/ShoppingCartUserName"
         android:layout_width="match_parent"
         android:layout_height="50sp"
         app:layout_constraintBottom_toTopOf="@id/availableItemsListView"
