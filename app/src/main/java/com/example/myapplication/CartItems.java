@@ -20,19 +20,22 @@ public class CartItems extends AppCompatActivity {
     ListView listView;
     ListView availableItems;
     List<ProductEntity> products = new ArrayList<>();
-    List<ProductEntity> availableProducts = new ArrayList<>();
+    //List<ProductEntity> availableProducts = new ArrayList<>();
     ItemBaseAdapter availableItemBaseAdapter;
     ItemBaseAdapter itemBaseAdapter;
 
     EditText mItemAdd;
     Button mItemButtonAdd;
     Button mPurchaseCart;
+
+    UserDatabase userDatabase;
+    UserDao userDao;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart_items);
-        prepareLists();
         linkItems();
+        prepareLists();
         mItemButtonAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -51,14 +54,14 @@ public class CartItems extends AppCompatActivity {
         mItemAdd = findViewById(R.id.itemAddEditText);
         mItemButtonAdd = findViewById(R.id.addItemButton);
         mPurchaseCart = findViewById(R.id.purchaseCartButton);
+        userDatabase = UserDatabase.getUserDatabase(getApplicationContext());
+        userDao = userDatabase.userDao();
     }
 
     private void prepareLists() {
-        products.add(new ProductEntity("Cheese",12.99,"Cheese",1,1));
-        availableProducts.add(new ProductEntity("Milk",12.99,"Cheese",1,1));
         listView = (ListView) findViewById(R.id.itemsListView);
         availableItems = (ListView) findViewById(R.id.availableItemsListView);
-        availableItemBaseAdapter = new ItemBaseAdapter(getApplicationContext(),availableProducts);
+        availableItemBaseAdapter = new ItemBaseAdapter(getApplicationContext(),userDao.getProductsCartID(0));
         itemBaseAdapter = new ItemBaseAdapter(getApplicationContext(),products);
         listView.setAdapter(itemBaseAdapter);
         availableItems.setAdapter(availableItemBaseAdapter);

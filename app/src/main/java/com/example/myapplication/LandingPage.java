@@ -70,6 +70,13 @@ public class LandingPage extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        mAdminTools.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = AdminTools.getIntent(getApplicationContext());
+                startActivity(intent);
+            }
+        });
     }
 
     private void checkForAdmin() {

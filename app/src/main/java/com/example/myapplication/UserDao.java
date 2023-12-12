@@ -13,6 +13,8 @@ public interface UserDao {
     void registerUser(UserEntity userEntity);
     @Insert
     void registerCart(CartEntity cartEntity);
+    @Insert
+    void addProduct(ProductEntity productEntity);
 
     @Query("SELECT * from users where name=(:name) and password=(:password)")
     UserEntity login(String name, String password);
@@ -25,6 +27,10 @@ public interface UserDao {
 
     @Query("SELECT * from products where productName=(:productName)")
     List<ProductEntity> getProductsName(String productName);
+    @Query("SELECT * from products where productName=(:productName) and cartID=(:cartID)")
+    List<ProductEntity> getProductsNameCartID(String productName,Integer cartID);
+    @Query("SELECT * from products where cartID=(:cartID)")
+    List<ProductEntity> getProductsCartID(Integer cartID);
 
     @Query("SELECT * from carts where userID=(:userID)")
     List<CartEntity> getCartsByID(Integer userID);
