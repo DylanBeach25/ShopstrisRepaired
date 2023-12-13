@@ -77,6 +77,13 @@ public class LandingPage extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        mPrevOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = PreviousOrders.getIntent(getApplicationContext());
+                startActivity(intent);
+            }
+        });
     }
 
     private void checkForAdmin() {
