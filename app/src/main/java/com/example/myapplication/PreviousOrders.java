@@ -34,6 +34,8 @@ public class PreviousOrders extends AppCompatActivity implements SelectListener{
 
         sharedPreferences = getSharedPreferences(SHARED_PREFS,MODE_PRIVATE);
         cartNamePreferences = getSharedPreferences("CART_PREF",MODE_PRIVATE);
+        edit = cartNamePreferences.edit();
+        edit.putString("cartName","");
         userDatabase = UserDatabase.getUserDatabase(getApplicationContext());
         userDao = userDatabase.userDao();
 
@@ -55,6 +57,11 @@ public class PreviousOrders extends AppCompatActivity implements SelectListener{
 
     @Override
     public void onItemClicked(CartEntity cartEntity) {
-        Toast.makeText(getApplicationContext(),"This is a test for functionality",Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(),"This is a test for functionality",Toast.LENGTH_SHORT).show();
+        edit.putString("cartName",cartEntity.getName());
+        edit.apply();
+        Intent intent = PreviousCartItems.getIntent(getApplicationContext());
+        startActivity(intent);
+
     }
 }
