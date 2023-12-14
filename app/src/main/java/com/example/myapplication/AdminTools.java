@@ -12,12 +12,15 @@ public class AdminTools extends AppCompatActivity {
 
     Button mStockItem;
     Button mRemoveItem;
+
+    Button backButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_tools);
         mStockItem = findViewById(R.id.StockItemButton);
         mRemoveItem = findViewById(R.id.removeItemButton);
+        backButton = findViewById(R.id.adminToolsBackButton);
 
         mStockItem.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -30,6 +33,13 @@ public class AdminTools extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = RemoveItems.getIntent(getApplicationContext());
+                startActivity(intent);
+            }
+        });
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = LandingPage.getIntent(getApplicationContext());
                 startActivity(intent);
             }
         });
