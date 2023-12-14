@@ -30,4 +30,5 @@
     <string name="add_item">Add Item</string>
     <string name="item_to_remove">Item to remove</string>
     <string name="delete_item">Delete Item</string>
+    <string name="back_arrow"><![CDATA[<]]></string>
 </resources>

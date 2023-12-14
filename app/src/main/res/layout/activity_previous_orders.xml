@@ -29,5 +29,15 @@
         app:layout_constraintBottom_toTopOf="@id/previousOrdersRecyclerView"
         />
 
+    <Button
+        android:id="@+id/previousOrdersBackButton"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:text="@string/back_arrow"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="30dp" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

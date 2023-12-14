@@ -28,5 +28,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/itemsListViewPrevious"
         android:text="@string/your_cart" />
+    <Button
+        android:id="@+id/previousCartItemsBackButton"
+        android:layout_width="60dp"
+        android:layout_height="50dp"
+        android:text="@string/back_arrow"
+        android:textSize="30sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,6 +6,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -22,6 +24,8 @@ UserDatabase userDatabase;
 UserDao userDao;
 Integer userId;
 Integer cartId;
+
+Button backButton;
 SharedPreferences sharedPreferences;
 SharedPreferences cartNamePreferences;
     @Override
@@ -41,6 +45,13 @@ SharedPreferences cartNamePreferences;
         {
             products.add(productEntity);
         }
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = PreviousOrders.getIntent(getApplicationContext());
+                startActivity(intent);
+            }
+        });
     }
 
     private void prepareLists() {
@@ -51,6 +62,7 @@ SharedPreferences cartNamePreferences;
 
     private void linkItems() {
         textView = findViewById(R.id.yourCartPrevious);
+        backButton = findViewById(R.id.previousCartItemsBackButton);
         userDatabase = UserDatabase.getUserDatabase(getApplicationContext());
         userDao = userDatabase.userDao();
     }

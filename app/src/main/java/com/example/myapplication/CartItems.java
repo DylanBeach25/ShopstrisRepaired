@@ -29,6 +29,7 @@ public class CartItems extends AppCompatActivity {
     EditText mItemAdd;
     Button mItemButtonAdd;
     Button mPurchaseCart;
+    Button backButton;
     TextView mUserName;
 
     UserDatabase userDatabase;
@@ -88,6 +89,13 @@ public class CartItems extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = CurrentOrders.getIntent(getApplicationContext());
+                startActivity(intent);
+            }
+        });
     }
 
     private void linkItems() {
@@ -95,6 +103,7 @@ public class CartItems extends AppCompatActivity {
         mItemButtonAdd = findViewById(R.id.addItemButton);
         mPurchaseCart = findViewById(R.id.purchaseCartButton);
         mUserName = findViewById(R.id.ShoppingCartUserName);
+        backButton = findViewById(R.id.itemsBackButton);
         userDatabase = UserDatabase.getUserDatabase(getApplicationContext());
         userDao = userDatabase.userDao();
     }

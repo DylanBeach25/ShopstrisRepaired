@@ -25,6 +25,7 @@ public class CurrentOrders extends AppCompatActivity implements SelectListener {
     RecyclerView recyclerView;
     TextView textView;
     Button button;
+    Button backButton;
     EditText editText;
     List<CartEntity> carts;
 
@@ -52,7 +53,7 @@ public class CurrentOrders extends AppCompatActivity implements SelectListener {
         textView = findViewById(R.id.orders_username);
         button = findViewById(R.id.createOrderButton);
         editText = findViewById(R.id.cartNameEditText);
-
+        backButton = findViewById(R.id.back_button);
 
         textView.setText(sharedPreferences.getString("name",""));
 
@@ -73,6 +74,13 @@ public class CurrentOrders extends AppCompatActivity implements SelectListener {
             @Override
             public void onClick(View v) {
                 createCart();
+            }
+        });
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = LandingPage.getIntent(getApplicationContext());
+                startActivity(intent);
             }
         });
 
